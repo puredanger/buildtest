@@ -29,13 +29,4 @@ jobs:
         gpg-private-key: ${{ secrets.OSSRH_GPG_SECRET_KEY }}
         gpg-passphrase: ${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
     - name: Publish to Maven
-      run: |
-        mvn \
-          --no-transfer-progress \
-          -B \
-          -DreleaseVersion=${{ github.event.inputs.releaseVersion }}
-          -DdevelopmentVersion=${{ github.event.inputs.snapshotVersion }}
-          -DskipStaging=true
-          -Psign
-          release:prepare
-          release:perform 
+      run: mvn -ntp -B -DreleaseVersion=${{ github.event.inputs.releaseVersion }} -DdevelopmentVersion=${{ github.event.inputs.snapshotVersion }} -DskipStaging=true -Psign release:prepare release:perform 
