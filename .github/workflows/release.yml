@@ -28,10 +28,10 @@ jobs:
         java-version: 8
         distribution: 'temurin'
         cache: 'maven'
-        server-id: ossrh
+        server-id: sonatype-nexus-staging
         server-username: ${{ secrets.OSSRH_USERNAME }}
         server-password: ${{ secrets.OSSRH_TOKEN }}
         gpg-private-key: ${{ secrets.OSSRH_GPG_SECRET_KEY }}
         gpg-passphrase: ${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
     - name: Publish to Maven
-      run: mvn -ntp -B -DreleaseVersion=${{ github.event.inputs.releaseVersion }} -DdevelopmentVersion=${{ github.event.inputs.snapshotVersion }} -DskipStaging=true -Psign release:prepare release:perform 
+      run: mvn -ntp -B -DreleaseVersion=${{ github.event.inputs.releaseVersion }} -DdevelopmentVersion=${{ github.event.inputs.snapshotVersion }} -DskipStaging=true -Psign release:prepare release:perform
