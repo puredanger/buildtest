@@ -19,4 +19,4 @@ jobs:
         distribution: 'temurin'
         cache: 'maven'
     - name: Build with Maven
-      run: mvn -Dclojure.version=${{ matrix.clojure-version }} clean test
+      run: mvn -ntp -B -Dclojure.version=${{ matrix.clojure-version }} clean test
